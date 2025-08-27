@@ -1,0 +1,21 @@
+# venv & IDE
+venv/
+.env/
+.venv/
+.idea/
+.vscode/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# data temp (keep the sample)
+data/*.xls
+!data/C12D15.xlsx

@@ -1,0 +1,10 @@
+@"
+venv/
+.venv/
+*/venv/
+*/.venv/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
+"@ | Out-File -Encoding utf8 .gitignore
