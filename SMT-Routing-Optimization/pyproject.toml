@@ -1,0 +1,3 @@
+[project.urls]
+Homepage = "https://github.com/trungiemiu/VRP/tree/main/SMT-Routing-Optimization"
+Issues   = "https://github.com/trungiemiu/VRP/issues"
