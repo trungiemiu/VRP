@@ -1,0 +1,263 @@
+{
+  "distances": [
+    [
+      0,
+      16,
+      6,
+      11,
+      9,
+      7,
+      7,
+      15,
+      7,
+      21
+    ],
+    [
+      16,
+      0,
+      12,
+      8,
+      23,
+      16,
+      16,
+      10,
+      17,
+      5
+    ],
+    [
+      6,
+      12,
+      0,
+      6,
+      13,
+      6,
+      5,
+      9,
+      6,
+      17
+    ],
+    [
+      11,
+      8,
+      6,
+      0,
+      18,
+      8,
+      8,
+      4,
+      10,
+      13
+    ],
+    [
+      9,
+      23,
+      13,
+      18,
+      0,
+      14,
+      13,
+      22,
+      12,
+      28
+    ],
+    [
+      7,
+      16,
+      6,
+      8,
+      14,
+      0,
+      1,
+      10,
+      3,
+      21
+    ],
+    [
+      7,
+      16,
+      5,
+      8,
+      13,
+      1,
+      0,
+      10,
+      2,
+      21
+    ],
+    [
+      15,
+      10,
+      9,
+      4,
+      22,
+      10,
+      10,
+      0,
+      12,
+      13
+    ],
+    [
+      7,
+      17,
+      6,
+      10,
+      12,
+      3,
+      2,
+      12,
+      0,
+      20
+    ],
+    [
+      21,
+      5,
+      17,
+      13,
+      28,
+      21,
+      21,
+      13,
+      20,
+      0
+    ]
+  ],
+  "hospitals": [
+    {
+      "hospital_id": 1,
+      "demand_weight": 60,
+      "demand_volume": 1.8,
+      "earliest_time": 9.0,
+      "latest_time": 10.0,
+      "beta": 1.7,
+      "mu": 3
+    },
+    {
+      "hospital_id": 2,
+      "demand_weight": 45,
+      "demand_volume": 1.35,
+      "earliest_time": 7.0,
+      "latest_time": 9.0,
+      "beta": 1.4,
+      "mu": 3
+    },
+    {
+      "hospital_id": 3,
+      "demand_weight": 135,
+      "demand_volume": 4.05,
+      "earliest_time": 6.5,
+      "latest_time": 7.5,
+      "beta": 1.0,
+      "mu": 3
+    },
+    {
+      "hospital_id": 4,
+      "demand_weight": 90,
+      "demand_volume": 2.7,
+      "earliest_time": 13.0,
+      "latest_time": 16.0,
+      "beta": 1.9,
+      "mu": 2
+    },
+    {
+      "hospital_id": 5,
+      "demand_weight": 45,
+      "demand_volume": 1.35,
+      "earliest_time": 15.0,
+      "latest_time": 17.0,
+      "beta": 1.5,
+      "mu": 2
+    },
+    {
+      "hospital_id": 6,
+      "demand_weight": 120,
+      "demand_volume": 3.6,
+      "earliest_time": 17.5,
+      "latest_time": 20.0,
+      "beta": 1.2,
+      "mu": 2
+    },
+    {
+      "hospital_id": 7,
+      "demand_weight": 75,
+      "demand_volume": 2.25,
+      "earliest_time": 18.0,
+      "latest_time": 21.0,
+      "beta": 1.6,
+      "mu": 1
+    },
+    {
+      "hospital_id": 8,
+      "demand_weight": 90,
+      "demand_volume": 2.7,
+      "earliest_time": 21.0,
+      "latest_time": 21.8,
+      "beta": 1.8,
+      "mu": 1
+    },
+    {
+      "hospital_id": 9,
+      "demand_weight": 150,
+      "demand_volume": 4.5,
+      "earliest_time": 19.5,
+      "latest_time": 23.0,
+      "beta": 1.3,
+      "mu": 1
+    }
+  ],
+  "vehicles": [
+    {
+      "vehicle_id": "V1",
+      "weight_capacity": 2500,
+      "volume_capacity": 25,
+      "distance_capacity": 100,
+      "speed": 60,
+      "fixed_cost": 200,
+      "time_cost_coeff": 2,
+      "distance_cost_coeff": 5
+    },
+    {
+      "vehicle_id": "V2",
+      "weight_capacity": 2500,
+      "volume_capacity": 25,
+      "distance_capacity": 100,
+      "speed": 60,
+      "fixed_cost": 200,
+      "time_cost_coeff": 2,
+      "distance_cost_coeff": 5
+    },
+    {
+      "vehicle_id": "V3",
+      "weight_capacity": 2500,
+      "volume_capacity": 25,
+      "distance_capacity": 100,
+      "speed": 60,
+      "fixed_cost": 200,
+      "time_cost_coeff": 2,
+      "distance_cost_coeff": 5
+    },
+    {
+      "vehicle_id": "V4",
+      "weight_capacity": 2500,
+      "volume_capacity": 25,
+      "distance_capacity": 100,
+      "speed": 60,
+      "fixed_cost": 200,
+      "time_cost_coeff": 2,
+      "distance_cost_coeff": 5
+    },
+    {
+      "vehicle_id": "V5",
+      "weight_capacity": 2500,
+      "volume_capacity": 25,
+      "distance_capacity": 100,
+      "speed": 60,
+      "fixed_cost": 200,
+      "time_cost_coeff": 2,
+      "distance_cost_coeff": 5
+    }
+  ],
+  "penalties": {
+    "early": 40,
+    "late": 60
+  }
+}

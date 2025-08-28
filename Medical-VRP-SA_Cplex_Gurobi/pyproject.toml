@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "medical-vrp-sa"
+version = "0.1.0"
+description = "Medical VRP with SA/PSO heuristics and MILP baselines (CPLEX, Gurobi)"
+readme = "README.md"
+requires-python = ">=3.7,<3.8"
+license = { text = "MIT" }
+authors = [{ name = "Trung Le" }]
+# Keep runtime deps in requirements.txt for Py3.7 pinning
+
+[tool.black]
+target-version = ["py37"]
+line-length = 100

@@ -1,10 +1,21 @@
-@"
+# venv & IDE
 venv/
+.env/
 .venv/
-*/venv/
-*/.venv/
+.idea/
+.vscode/
+
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+*.egg-info/
+
+# OS files
 .DS_Store
 Thumbs.db
-"@ | Out-File -Encoding utf8 .gitignore
+
+# data temp (keep the sample)
+data/*.xls
+!data/C12D15.xlsx
