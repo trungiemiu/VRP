@@ -128,8 +128,8 @@ smt_routing_optimization/
 
 ## Project links
 
-* Repository: [https://github.com/trungiemiu/VRP/smt_routing_optimization](https://github.com/trungiemiu/VRP/SMT_Routing_Optimization)
-* Issues: [https://github.com/trungiemiu/VRP/smt_routing_optimization/issues](https://github.com/trungiemiu/VRP/SMT_Routing_Optimization/issues)
+* Repository: [https://github.com/trungiemiu/VRP/smt_routing_optimization]([https://github.com/trungiemiu/VRP/SMT_Routing_Optimization](https://github.com/trungiemiu/VRP/tree/main/SMT-Routing-Optimization))
+* Issues: [https://github.com/trungiemiu/VRP/smt_routing_optimization/issues](https://github.com/trungiemiu/VRP/tree/main/SMT-Routing-Optimization/issues)
 
 ## Author
 
