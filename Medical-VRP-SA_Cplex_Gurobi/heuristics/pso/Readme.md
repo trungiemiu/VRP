@@ -1,11 +1,16 @@
-Particle Swarm Optimization (PSO) — Medical VRP (plain distance)
+# Particle Swarm Optimization (PSO) — Medical VRP 
 
-Encoding uses Random Keys: one real number in \[0,1] per hospital. Sorting keys yields the visit order; a greedy splitter assigns visits to vehicles while trying to respect capacities. Any violations receive large penalties so the swarm gravitates to feasible routes.
+Encoding uses **Random Keys**: one real number in \[0,1] per hospital. Sorting keys yields the visit order; a greedy splitter assigns visits to vehicles while trying to respect capacities. Any violations receive **large penalties** so the swarm gravitates to feasible routes.
 
-Objective
+## Objective
+
+Matches project objective when `use_load_distance_cost=False`:
+
 $total = fixed + time + distance + priority\times(Ze·s·earliness + Zl·s·lateness)$
 
-Pseudocode
+## Pseudocode
+
+```text
 Input:
   D, Hospitals H, Vehicles V, penalties P,
   swarm_size M, max_iters N, inertia w, cognitive c1, social c2.
@@ -33,23 +38,30 @@ Output: best Solution S* and cost f*.
 20         if f_p < gbest_f:   (gbest_x, gbest_f, S*)          ← (x_p,f_p,S_p)
 21     record gbest_f
 22 return S*, gbest_f
+```
 
-Notes
-`decode_random_keys` tries feasible insertion first (respect W/U/Dmax). If none fits, it places the visit to the least-distance-increase vehicle, and feasibility is penalized.
-Typical hyperparameters: `M=30..60`, `N=500..3000`, `w=0.6..0.9`, `c1=c2≈1.2..2.0`.
-Set `use_load_distance_cost=False` to match the paper’s **plain distance** objective.
+## Notes
 
-CLI usage
-JSON data
+* `decode_random_keys` tries feasible insertion first (respect W/U/Dmax). If none fits, it places the visit to the least-distance-increase vehicle, and feasibility is penalized.
+* Typical hyperparameters: `M=30..60`, `N=500..3000`, `w=0.6..0.9`, `c1=c2≈1.2..2.0`.
+
+## CLI usage
+
+```bash
+# JSON data
 python -m scripts.run_pso --json data/json/medical_vrp_data.json \
   --swarm-size 40 --max-iters 600 --w 0.7 --c1 1.5 --c2 1.5
-Excel data
+
+# Excel data
 python -m scripts.run_pso --excel data/excel/medical_vrp_data.xlsx --swarm-size 30 --max-iters 500
+```
 
-Data requirements
-Excel sheets: `distances`, `hospitals`, `vehicles`, `penalties`.
-JSON keys: `distances`, `hospitals`, `vehicles`, `penalties`.
+## Data requirements
 
-Output
-Prints the best routes and total cost.
-`utils.plot.plot_history(...)` plots the best-cost curve if `matplotlib` is available.
+* **Excel** sheets: `distances`, `hospitals`, `vehicles`, `penalties`.
+* **JSON** keys: `distances`, `hospitals`, `vehicles`, `penalties`.
+
+## Output
+
+* Prints the best routes and total cost.
+* `utils.plot.plot_history(...)` plots the best-cost curve if `matplotlib` is available.
