@@ -7,8 +7,8 @@ Heuristics (SA, PSO) and MILP baselines (CPLEX, Gurobi) for a medical distributi
 ## Folder structure
 
 ```
-├─ cplex_solver/         # Docplex model (MTZ always ON)
-├─ gurobi_solver/        # Gurobi model  (MTZ always ON)
+├─ cplex_solver/         # Docplex model
+├─ gurobi_solver/        # Gurobi model
 ├─ heuristics/           # common.py, sa.py, pso.py
 ├─ scripts/              # run_sa.py, run_pso.py, run_cplex.py, run_gurobi.py
 ├─ utils/                # io.py (excel/json), plot.py
@@ -63,10 +63,10 @@ python -m scripts.run_pso --json  data/json/medical_vrp_data.json --swarm-size 4
 # or
 python -m scripts.run_pso --excel data/excel/medical_vrp_data.xlsx --swarm-size 30 --max-iters 500
 
-# CPLEX (MTZ always ON)
+# CPLEX
 python -m scripts.run_cplex  --excel data/excel/medical_vrp_data.xlsx --time-limit 300
 
-# Gurobi (MTZ always ON)
+# Gurobi
 python -m scripts.run_gurobi --json  data/json/medical_vrp_data.json --time-limit 300
 ```
 
@@ -80,7 +80,7 @@ python -m scripts.run_gurobi --json  data/json/medical_vrp_data.json --time-limi
 ## Notes
 
 * SA/PSO objective uses `Solution.total_cost(...)` so results are consistent with MILP models when `use_load_distance_cost=False`.
-* CPLEX/Gurobi models include soft time windows (earliness/lateness) and use MTZ subtour constraints by default.
+* CPLEX/Gurobi models include soft time windows (earliness/lateness) and use MTZ subtour constraints.
 
 ---
 
