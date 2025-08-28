@@ -1,53 +1,89 @@
-# Genetic Algorithm (GA) for SMT Routing
+# Vehicle Routing Problem (VRP) Repository
 
-Permutation-based GA minimizing total Euclidean travel with the flow:
-**origin → feeder(j) → node j → … → origin**.
+Welcome to the **VRP Repository** – a curated collection of problems, models, and solution methods for the **Vehicle Routing Problem (VRP)** and its many variants. This repository is designed for researchers, students, and practitioners who want to study, implement, and benchmark optimization methods for routing and logistics problems.
 
-## Fitness
+## 🔎 About the Vehicle Routing Problem (VRP)
 
-`route_distance(route, origin, points, feeders, nf_map)` from `heuristics/utils.py`.
+The Vehicle Routing Problem (VRP) is a fundamental challenge in logistics and supply chain management. It involves designing optimal delivery or service routes for a fleet of vehicles to serve a set of customers, subject to constraints such as capacity, time windows, or distance limits.
 
-## Pseudocode
+VRP is **NP-hard**, meaning exact solutions become computationally expensive as the problem size grows. Its importance stems from real-world applications in:
 
-```
-Input: N, data, pop, gen, pc, pm, elitism_k, seed
-Init population P with random permutations of 1..N
-Evaluate fitness of all individuals; keep global best
+* Transportation and distribution networks
+* Last-mile delivery
+* E-commerce logistics
+* Waste collection
+* Ride-sharing and mobility services
+* Humanitarian logistics and disaster relief
 
-for t = 1..gen:
-    # Selection (tournament)
-    Parents ← select from P
-    # Crossover (OX/PMX)
-    Offspring ← crossover(Parents) with prob pc
-    # Mutation (swap)
-    mutate Offspring with prob pm
-    # Elitism
-    Elite ← best elitism_k from P
-    P ← Elite ∪ best of Offspring (|P| = pop)
-    Update global best if improved
+## ⚙️ Repository Content
 
-return best route
-```
+This repository contains:
 
-## CLI
+* **Problem definitions**: Mathematical formulations and input data formats for different VRP variants.
+* **Solution methods**: Implementations of algorithms for solving VRP, ranging from exact solvers to metaheuristics.
+* **Examples and experiments**: Sample datasets, test cases, and performance results.
 
-```bash
-python -m heuristics.ga.ga_smt data/C12D15.xlsx \
-  --pop 250 --gen 400 --pc 0.9 --pm 0.05 --elit 5 \
-  --seed 42 --plot-history
-```
+## 🧠 Solution Approaches
 
-## Parameters
+The VRP can be tackled using multiple approaches, each with trade-offs in accuracy and computational efficiency:
 
-* `--pop`: population size (default 200)
-* `--gen`: number of generations (default 300)
-* `--pc`, `--pm`: crossover and mutation probabilities
-* `--elit`: number of elite individuals kept each generation
-* `--seed`: random seed for reproducibility
-* `--plot-history`: show convergence plot
+### 1. **Exact Methods**
 
-## Notes
+* Mixed Integer Programming (MIP)
+* Branch and Bound
+* Branch and Cut
+* Constraint Programming
 
-* Representation is a permutation of node IDs `1..N`.
-* Cost uses the destination node’s feeder for each move `i → j`.
-* Plotting uses shared utilities in `utils/plot.py`.
+These guarantee optimality but are limited to small and medium-sized instances.
+
+### 2. **Heuristics**
+
+* Clarke-Wright Savings Algorithm
+* Sweep Algorithm
+* Nearest Neighbor and Insertion Methods
+
+Heuristics are fast and simple but may not find near-optimal solutions for large-scale problems.
+
+### 3. **Metaheuristics**
+
+* Genetic Algorithms (GA)
+* Simulated Annealing (SA)
+* Tabu Search (TS)
+* Particle Swarm Optimization (PSO)
+* Ant Colony Optimization (ACO)
+* Hybrid and Adaptive Metaheuristics
+
+Metaheuristics are widely used in practice, balancing solution quality and scalability.
+
+### 4. **Hybrid & Advanced Approaches**
+
+* Matheuristics (integration of heuristics and exact methods)
+* Decomposition techniques (column generation, Benders decomposition)
+* Machine learning-assisted optimization
+
+## 🚀 Why This Repository?
+
+* To **learn**: Provides a hands-on way to understand VRP and its complexities.
+* To **experiment**: Compare and benchmark algorithms on different datasets.
+* To **contribute**: Share new methods, improvements, or problem instances with the community.
+
+## 📌 How to Use
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/trungiemiu/VRP.git
+   ```
+2. Explore problem definitions and solution methods in subfolders.
+3. Run example scripts to test algorithms on sample datasets.
+
+## 📚 References
+
+For deeper understanding of VRP, check out:
+
+* Toth, P., & Vigo, D. (2014). *Vehicle Routing: Problems, Methods, and Applications*.
+* Laporte, G. (2009). Fifty years of vehicle routing. *Transportation Science*.
+
+---
+
+This repository is a living collection. Contributions and suggestions are welcome to expand the set of VRP models and solution techniques.
