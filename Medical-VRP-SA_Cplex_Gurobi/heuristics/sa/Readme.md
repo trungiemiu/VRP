@@ -1,57 +1,65 @@
-Simulated Annealing (SA) — Medical VRP (plain distance)
+# Simulated Annealing (SA) — Medical VRP
+
 This SA matches the project objective when `use_load_distance_cost=False`:
+
 $total = fixed + time + distance + priority\times(Ze·s·earliness + Zl·s·lateness)$
+
 Soft time windows are handled via earliness/lateness penalties; feasibility is enforced for hard constraints (weight, volume, max route distance). Neighborhoods operate on routes directly.
 
-Pseudocode
+## Pseudocode
+
+```text
 Input:
   D (distance matrix), Hospitals H, Vehicles V, penalties P,
   initial_temp T0, cooling_rate r in (0,1), min_temp Tmin, max_iters N.
 Output: best Solution S* and cost f*.
 
-1  S ← initial_solution(H,V)
-2  f ← cost(S; D,P)
+1  S ← initial_solution(H,V)                      # greedy by capacity & nearest
+2  f ← cost(S; D,P)                               # Solution.total_cost(...)
 3  S* ← S; f* ← f; T ← T0; it ← 0
 4  while it < N and T > Tmin:
-5      S' ← neighbor(S)                           
+5      S' ← neighbor(S)                           # one of:
 6            - swap two hospitals in a route
 7            - relocate one hospital across routes (feasible-first)
 8            - 2-opt on a single route
-9      if not feasible(S'):                      
-10         continue  
+9      if not feasible(S'):                       # W/U/Dmax hard caps
+10         continue                                # (or apply large penalty)
 11     f' ← cost(S'; D,P)
 12     Δ ← f' − f
-13     if Δ ≤ 0 then  
+13     if Δ ≤ 0 then                               # improvement
 14         S ← S'; f ← f'
 15         if f < f* then S* ← S; f* ← f
-16     else                                       
+16     else                                        # worse → accept with prob.
 17         if rand(0,1) < exp(−Δ / T): S ← S'; f ← f'
-18     T ← r · T 
+18     T ← r · T                                    # geometric cooling
 19     it ← it + 1
 20 return S*, f*
+```
 
-Practical tips
+## Practical tips
 
-Iteration count depends on both `max_iters` **and** temperature:
+* Iteration count depends on both `max_iters` **and** temperature:
   $N_\text{stop} \approx \ln(T_{min}/T_0)/\ln(r)$. Set `Tmin` small or `r` close to 1 to reach `max_iters`.
-Typical choices: `T0=1000`, `r=0.995..0.999`, `Tmin=1e-3`, `N=1000..20000`.
-Tune neighborhood usage ratios for different instance sizes.
+* Typical choices: `T0=1000`, `r=0.995..0.999`, `Tmin=1e-3`, `N=1000..20000`.
+* Tune neighborhood usage ratios for different instance sizes.
 
-CLI usage
+## CLI usage
 
-JSON data
+```bash
+# JSON data
 python -m scripts.run_sa --json data/json/medical_vrp_data.json \
   --max-iters 1000 --cooling-rate 0.995 --initial-temp 1000 --min-temp 1e-3
 
-Excel data
+# Excel data
 python -m scripts.run_sa --excel data/excel/medical_vrp_data.xlsx --max-iters 1500
+```
 
-Data requirements
+## Data requirements
 
-Excel sheets: `distances`, `hospitals`, `vehicles`, `penalties`.
-JSON keys: `distances`, `hospitals`, `vehicles`, `penalties`.
+* **Excel** sheets: `distances`, `hospitals`, `vehicles`, `penalties`.
+* **JSON** keys: `distances`, `hospitals`, `vehicles`, `penalties`.
 
-Output
+## Output
 
-Prints the best routes and total cost.
-`utils.plot.plot_history(...)` can draw the best-cost vs. iteration curve if `matplotlib` is available.
+* Prints the best routes and total cost.
+* `utils.plot.plot_history(...)` can draw the best-cost vs. iteration curve if `matplotlib` is available.
