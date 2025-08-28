@@ -16,6 +16,3 @@ __pycache__/
 .DS_Store
 Thumbs.db
 
-# data temp (keep the sample)
-data/*.xls
-!data/C12D15.xlsx
