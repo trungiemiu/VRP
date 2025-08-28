@@ -12,6 +12,8 @@ The routing cost follows the SMT flow:
 
 Distances are Euclidean.
 
+---
+
 ## Data format (Excel)
 
 Provide a single `.xlsx` file with 3 sheets:
@@ -45,11 +47,13 @@ Provide a single `.xlsx` file with 3 sheets:
 
 Each node must reference a valid `Feeder` id.
 
+---
 
 ## Installation
 
 Tested with **Python 3.7.x** and **CPLEX 12.9**.
 
+```bash
 python -m venv venv
 # Windows
 venv\Scripts\activate
@@ -60,7 +64,9 @@ pip install -r requirements.txt
 # Install CPLEX 12.9 Python API (local wheel from IBM installation)
 # Example (Windows):
 pip install "C:\\Program Files\\IBM\\ILOG\\CPLEX_Studio129\\cplex\\python\\3.7\\x64_win64"
+```
 
+---
 
 ## How to run
 
@@ -68,35 +74,44 @@ Use the supplied sample at `data/C12D15.xlsx` or your own file.
 
 ### 1) CPLEX MIP
 
+```bash
 python -m cplex_solver.cplex_solver data/C12D15.xlsx \
   --progress-plot --progress-x time
+```
 
 * Prints the best route as a comma‑separated list (e.g. `3,10,9,1,…`).
 * Shows the route plot and, if enabled, a branch‑and‑bound progress chart.
 
 ### 2) Genetic Algorithm (GA)
 
+```bash
 python -m heuristics.ga.ga_smt data/C12D15.xlsx \
   --pop 250 --gen 400 --seed 42 --plot-history
+```
 
 * `--plot-history` shows convergence (best/iter‑best/mean).
 
 ### 3) ACO (no TS)
 
+```bash
 python -m heuristics.aco.aco data/C12D15.xlsx \
   --ants 40 --iters 300 --seed 42 --plot-history
-
+```
 
 ### 4) ACO‑TS (ACO + Tabu Search)
 
+```bash
 python -m heuristics.aco_ts.aco_ts data/C12D15.xlsx \
   --ants 40 --iters 300 --ts --ts-iters 150 --seed 42 --plot-history
+```
 
 > All solvers plot the route by default. Add `--no-plot` to suppress figures.
 
+---
 
 ## Project structure
 
+```
 smt_routing_optimization/
 ├─ data/
 │  └─ C12D15.xlsx
@@ -112,12 +127,16 @@ smt_routing_optimization/
 │  ├─ aco/    └─ aco.py
 │  └─ aco_ts/ └─ aco_ts.py
 └─ docs/ (optional)
+```
+
+---
 
 ## Reproducibility
 
 * Use `--seed` to make GA/ACO stochastic runs reproducible.
 * For CPLEX, set a time limit via `--time-limit` and thread count with `--threads`.
 
+---
 
 ## Troubleshooting
 
@@ -125,11 +144,12 @@ smt_routing_optimization/
 * **CPLEX not found** → install the IBM CPLEX 12.9 Python wheel from your local installation path.
 * **Plots not showing on headless servers** → add `--no-plot` or configure a non‑interactive Matplotlib backend.
 
+---
 
 ## Project links
 
-* Repository: [https://github.com/trungiemiu/VRP/smt_routing_optimization]([https://github.com/trungiemiu/VRP/SMT_Routing_Optimization](https://github.com/trungiemiu/VRP/tree/main/SMT-Routing-Optimization))
-* Issues: [https://github.com/trungiemiu/VRP/smt_routing_optimization/issues](https://github.com/trungiemiu/VRP/tree/main/SMT-Routing-Optimization/issues)
+* Repository: [https://github.com/trungiemiu/smt\_routing\_optimization](https://github.com/trungiemiu/smt_routing_optimization)
+* Issues: [https://github.com/trungiemiu/smt\_routing\_optimization/issues](https://github.com/trungiemiu/smt_routing_optimization/issues)
 
 ## Author
 
@@ -142,6 +162,7 @@ If this repository helps your research, please cite the relevant literature list
 
 Castellani, M., Otri, S., & Pham, D. T. (2019). *Printed circuit board assembly time minimisation using a novel Bees Algorithm.* Computers & Industrial Engineering, 133, 186–194. [https://doi.org/10.1016/j.cie.2019.05.015](https://doi.org/10.1016/j.cie.2019.05.015)
 
+---
 
 ## License
 
